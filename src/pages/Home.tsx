@@ -12,12 +12,12 @@ import teamMeeting from "@/assets/gallery/team-meeting.jpg";
 import robotProject from "@/assets/gallery/robot-project.jpg";
 import teamGroup from "@/assets/gallery/team-group.jpg";
 import teamCelebration from "@/assets/gallery/team-celebration.jpg";
-import { Zap, Cpu, Hammer, Calendar } from "lucide-react";
+import { Zap, Cpu, Hammer, Calendar, Users } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
   const { shouldLazyLoad, shouldReduceAnimations, measureInteraction } = usePerformanceMonitoring();
-  
+
   // Measure render performance for this component
   useRenderPerformance('Home');
 
@@ -183,7 +183,7 @@ const Home = () => {
               [MEMORIES_FROM_THE_PAST]
             </h2>
           </ParallaxContainer>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Photo 1 - Team Meeting */}
             <ParallaxContainer intensity={6}>
@@ -235,9 +235,9 @@ const Home = () => {
                 <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
                   <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />
-                  <img 
-                    src={teamGroup} 
-                    alt="Team Group" 
+                  <img
+                    src={teamGroup}
+                    alt="Team Group"
                     className="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-neon/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -255,9 +255,9 @@ const Home = () => {
                 <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
                   <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />
-                  <img 
-                    src={teamCelebration} 
-                    alt="Team Celebration" 
+                  <img
+                    src={teamCelebration}
+                    alt="Team Celebration"
                     className="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-neon/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -275,6 +275,62 @@ const Home = () => {
             <div className="absolute left-1/4 top-0 w-2 h-2 bg-neon rounded-full glow-neon animate-float-rotate" />
             <div className="absolute right-1/3 top-8 w-3 h-3 bg-neon rounded-full glow-neon animate-float" style={{ animationDelay: "1s" }} />
             <div className="absolute left-1/2 top-4 w-1 h-1 bg-neon rounded-full glow-neon animate-float-rotate" style={{ animationDelay: "2s" }} />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 border-t border-dashed border-border">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <ParallaxContainer intensity={6}>
+              <h2 className="text-4xl font-mono-heading font-bold text-neon mb-8 misalign-right animate-slide-in-right">
+                [CONTACT_ORGANIZERS]
+              </h2>
+            </ParallaxContainer>
+            <div className="grid md:grid-cols-2 gap-8">
+              <ParallaxContainer intensity={4}>
+                <div className="border-l-2 border-neon/50 pl-6 misalign-left animate-slide-in-left" style={{ animationDelay: "0.1s" }}>
+                  <div className="flex items-start gap-3 mb-2">
+                    <Users className="w-5 h-5 text-neon mt-1 shrink-0 animate-float" />
+                    <div>
+                      <p className="font-mono-heading font-bold text-foreground">Dhruv Basia</p>
+                      <p className="text-sm text-muted-foreground hover:text-neon transition-colors cursor-pointer">basiadhruv@gmail.com</p>
+                      <p className="text-sm text-muted-foreground hover:text-neon transition-colors cursor-pointer">+917292083676</p>
+                    </div>
+                  </div>
+                </div>
+              </ParallaxContainer>
+              <ParallaxContainer intensity={5}>
+                <div className="border-l-2 border-neon/50 pl-6 misalign-right animate-slide-in-right" style={{ animationDelay: "0.2s" }}>
+                  <div className="flex items-start gap-3 mb-2">
+                    <Users className="w-5 h-5 text-neon mt-1 shrink-0 animate-float" style={{ animationDelay: "0.5s" }} />
+                    <div>
+                      <p className="font-mono-heading font-bold text-foreground">Nyasa Vats</p>
+                      <p className="text-sm text-muted-foreground hover:text-neon transition-colors cursor-pointer">nyasavats@gmail.com</p>
+                      <p className="text-sm text-muted-foreground hover:text-neon transition-colors cursor-pointer">+917068991179</p>
+                    </div>
+                  </div>
+                </div>
+              </ParallaxContainer>
+            </div>
+
+            {/* Additional Contact Info */}
+            <div className="mt-12 text-center">
+              <ParallaxContainer intensity={3}>
+                <div className="border border-neon/30 p-6 hover:border-neon hover:glow-neon transition-all duration-300 misalign-up">
+                  <p className="font-mono-heading text-foreground font-bold mb-2">Have Questions?</p>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Reach out to our organizers for any queries about registration, event details, or technical requirements.
+                  </p>
+                  <div className="flex justify-center gap-4">
+                    <div className="w-2 h-2 bg-neon rounded-full glow-neon animate-float" />
+                    <div className="w-2 h-2 bg-neon rounded-full glow-neon animate-float" style={{ animationDelay: "0.3s" }} />
+                    <div className="w-2 h-2 bg-neon rounded-full glow-neon animate-float" style={{ animationDelay: "0.6s" }} />
+                  </div>
+                </div>
+              </ParallaxContainer>
+            </div>
           </div>
         </div>
       </section>
