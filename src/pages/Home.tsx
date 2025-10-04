@@ -3,7 +3,10 @@ import GlitchText from "@/components/GlitchText";
 import NeonButton from "@/components/NeonButton";
 import CursorFollower from "@/components/CursorFollower";
 import ParallaxContainer from "@/components/ParallaxContainer";
+import LazyImage from "@/components/LazyImage";
+import PerformanceAwareAnimation from "@/components/PerformanceAwareAnimation";
 import { useNavigate } from "react-router-dom";
+import { usePerformanceMonitoring, useRenderPerformance } from "@/hooks/usePerformanceMonitoring";
 import heroCircuit from "@/assets/hero-circuit.jpg";
 import teamMeeting from "@/assets/gallery/team-meeting.jpg";
 import robotProject from "@/assets/gallery/robot-project.jpg";
@@ -13,6 +16,10 @@ import { Zap, Cpu, Hammer, Calendar } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { shouldLazyLoad, shouldReduceAnimations, measureInteraction } = usePerformanceMonitoring();
+  
+  // Measure render performance for this component
+  useRenderPerformance('Home');
 
   return (
     <div className="min-h-screen bg-background">
@@ -20,10 +27,10 @@ const Home = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden" style={{ isolation: 'isolate' }}>
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 opacity-20">
-          <img
+          <LazyImage
             src={heroCircuit}
             alt="Circuit board"
             className="w-full h-full object-cover misalign-down"
@@ -34,13 +41,13 @@ const Home = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Main Title with Glitch */}
-            <h1 className="text-7xl md:text-9xl font-mono-heading font-bold mb-6 misalign-right animate-slide-in-bottom">
+            <h1 className="text-7xl md:text-9xl font-mono-heading font-bold mb-6 relative animate-slide-in-bottom">
               <GlitchText intense>
                 <span className="text-neon animate-text-flicker">HARDWARE</span>
               </GlitchText>
               <br />
-              <ParallaxContainer intensity={15}>
-                <span className="text-foreground misalign-left inline-block">HACKFEST</span>
+              <ParallaxContainer intensity={8} className="inline-block">
+                <span className="text-foreground inline-block">HACKFEST</span>
               </ParallaxContainer>
               <br />
               <span className="text-neon text-8xl md:text-[10rem] animate-scale-pulse">2.0</span>
@@ -52,8 +59,8 @@ const Home = () => {
             </p>
 
             {/* Date Badge - Intentionally Misaligned */}
-            <ParallaxContainer intensity={10}>
-              <div className="inline-block border-2 border-dashed border-neon px-8 py-4 mb-12 misalign-up relative animate-border-dance">
+            <ParallaxContainer intensity={5} className="inline-block mb-12">
+              <div className="inline-block border-2 border-dashed border-neon px-8 py-4 relative animate-border-dance">
                 <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-neon animate-float" />
                 <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-neon animate-float" style={{ animationDelay: "0.5s" }} />
                 <p className="font-mono-heading text-2xl text-neon font-bold">
@@ -72,7 +79,7 @@ const Home = () => {
                   REGISTER NOW
                 </NeonButton>
               </div>
-              <div className="misalign-up">
+              <div>
                 <button
                   onClick={() => navigate("/schedule")}
                   className="group relative border-2 border-dashed border-muted-foreground/50 px-8 py-3 font-mono-heading font-bold text-muted-foreground hover:border-neon hover:text-neon transition-all duration-300 hover:glow-neon flex items-center gap-3 mx-auto"
@@ -124,8 +131,8 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Feature 1 */}
-            <ParallaxContainer intensity={12}>
-              <div className="border border-neon/30 p-6 misalign-up relative group hover:border-neon hover:glow-neon transition-all hover:scale-105 animate-slide-in-bottom" style={{ animationDelay: "0.1s" }}>
+            <ParallaxContainer intensity={6}>
+              <div className="border border-neon/30 p-6 relative group hover:border-neon hover:glow-neon transition-all hover:scale-105 animate-slide-in-bottom" style={{ animationDelay: "0.1s" }}>
                 <div className="absolute -top-2 -right-2 w-4 h-4 bg-neon animate-float" />
                 <Zap className="w-12 h-12 text-neon mb-4 group-hover:glow-strong transition-all group-hover:animate-float-rotate" />
                 <h3 className="font-mono-heading text-xl font-bold mb-3 text-foreground">
@@ -138,8 +145,8 @@ const Home = () => {
             </ParallaxContainer>
 
             {/* Feature 2 */}
-            <ParallaxContainer intensity={15}>
-              <div className="border border-neon/30 p-6 misalign-down relative group hover:border-neon hover:glow-neon transition-all hover:scale-105 animate-slide-in-bottom" style={{ animationDelay: "0.2s" }}>
+            <ParallaxContainer intensity={8}>
+              <div className="border border-neon/30 p-6 relative group hover:border-neon hover:glow-neon transition-all hover:scale-105 animate-slide-in-bottom" style={{ animationDelay: "0.2s" }}>
                 <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-neon animate-float" style={{ animationDelay: "0.5s" }} />
                 <Cpu className="w-12 h-12 text-neon mb-4 group-hover:glow-strong transition-all group-hover:animate-float-rotate" />
                 <h3 className="font-mono-heading text-xl font-bold mb-3 text-foreground">
@@ -152,7 +159,7 @@ const Home = () => {
             </ParallaxContainer>
 
             {/* Feature 3 */}
-            <ParallaxContainer intensity={10}>
+            <ParallaxContainer intensity={5}>
               <div className="border border-neon/30 p-6 relative group hover:border-neon hover:glow-neon transition-all hover:scale-105 animate-slide-in-bottom" style={{ animationDelay: "0.3s" }}>
                 <div className="absolute -top-2 -left-2 w-4 h-4 bg-neon animate-float" style={{ animationDelay: "1s" }} />
                 <Hammer className="w-12 h-12 text-neon mb-4 group-hover:glow-strong transition-all group-hover:animate-float-rotate" />
@@ -179,48 +186,52 @@ const Home = () => {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Photo 1 - Team Meeting */}
-            <ParallaxContainer intensity={12}>
-              <div className="relative group misalign-up animate-slide-in-bottom" style={{ animationDelay: "0.1s" }}>
-                <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
-                  <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />
-                  <img 
-                    src={teamMeeting} 
-                    alt="Team Meeting" 
-                    className="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-neon/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                    <p className="font-mono-heading text-neon text-sm font-bold">TEAM_COLLABORATION</p>
-                    <p className="text-xs text-muted-foreground">Building the future together</p>
+            <ParallaxContainer intensity={6}>
+              <PerformanceAwareAnimation animationType="slide" delay={100}>
+                <div className="relative group">
+                  <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
+                    <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />
+                    <LazyImage
+                      src={teamMeeting}
+                      alt="Team Meeting"
+                      className="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-neon/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      <p className="font-mono-heading text-neon text-sm font-bold">TEAM_COLLABORATION</p>
+                      <p className="text-xs text-muted-foreground">Building the future together</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </PerformanceAwareAnimation>
             </ParallaxContainer>
 
             {/* Photo 2 - Robot Project */}
-            <ParallaxContainer intensity={15}>
-              <div className="relative group misalign-down animate-slide-in-bottom" style={{ animationDelay: "0.2s" }}>
-                <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
-                  <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />
-                  <img 
-                    src={robotProject} 
-                    alt="Robot Project" 
-                    className="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-neon/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                    <p className="font-mono-heading text-neon text-sm font-bold">HARDWARE_INNOVATION</p>
-                    <p className="text-xs text-muted-foreground">Creating intelligent machines</p>
+            <ParallaxContainer intensity={8}>
+              <PerformanceAwareAnimation animationType="slide" delay={200}>
+                <div className="relative group">
+                  <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
+                    <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />
+                    <LazyImage
+                      src={robotProject}
+                      alt="Robot Project"
+                      className="w-full h-64 object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-neon/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      <p className="font-mono-heading text-neon text-sm font-bold">HARDWARE_INNOVATION</p>
+                      <p className="text-xs text-muted-foreground">Creating intelligent machines</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </PerformanceAwareAnimation>
             </ParallaxContainer>
 
             {/* Photo 3 - Team Group */}
-            <ParallaxContainer intensity={10}>
-              <div className="relative group misalign-left animate-slide-in-bottom" style={{ animationDelay: "0.3s" }}>
+            <ParallaxContainer intensity={5}>
+              <div className="relative group animate-slide-in-bottom" style={{ animationDelay: "0.3s" }}>
                 <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
                   <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />
@@ -239,8 +250,8 @@ const Home = () => {
             </ParallaxContainer>
 
             {/* Photo 4 - Team Celebration */}
-            <ParallaxContainer intensity={14}>
-              <div className="relative group misalign-right animate-slide-in-bottom" style={{ animationDelay: "0.4s" }}>
+            <ParallaxContainer intensity={7}>
+              <div className="relative group animate-slide-in-bottom" style={{ animationDelay: "0.4s" }}>
                 <div className="border-2 border-dashed border-neon/30 p-4 hover:border-neon transition-all duration-500 hover:glow-neon relative overflow-hidden">
                   <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-neon animate-float opacity-0 group-hover:opacity-100 transition-opacity" style={{ animationDelay: "0.5s" }} />

@@ -314,4 +314,157 @@ All colors MUST be HSL.
   .skew-slight {
     transform: skewY(-1deg);
   }
+  
+  /* Performance optimization utilities */
+  .reduce-animations * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .high-performance-mode * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .high-performance-mode .animate-glitch,
+  .high-performance-mode .animate-glitch-text,
+  .high-performance-mode .animate-neon-pulse,
+  .high-performance-mode .animate-float,
+  .high-performance-mode .animate-float-rotate,
+  .high-performance-mode .animate-scale-pulse,
+  .high-performance-mode .animate-border-dance,
+  .high-performance-mode .animate-text-flicker {
+    animation: none !important;
+  }
+  
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    .animate-glitch,
+    .animate-glitch-text,
+    .animate-neon-pulse,
+    .animate-float,
+    .animate-float-rotate,
+    .animate-scale-pulse,
+    .animate-border-dance,
+    .animate-text-flicker {
+      animation: none !important;
+    }
+  }
+  
+  /* Mobile-specific performance optimizations */
+  @media (max-width: 768px) {
+    .animate-glitch,
+    .animate-glitch-text {
+      animation-duration: 0.5s;
+    }
+    
+    .animate-float,
+    .animate-float-rotate {
+      animation-duration: 6s;
+    }
+    
+    .animate-neon-pulse,
+    .animate-scale-pulse {
+      animation-duration: 3s;
+    }
+  }
+  
+  /* Battery optimization classes */
+  .battery-saver .animate-glitch,
+  .battery-saver .animate-glitch-text,
+  .battery-saver .animate-neon-pulse,
+  .battery-saver .animate-float,
+  .battery-saver .animate-float-rotate,
+  .battery-saver .animate-scale-pulse,
+  .battery-saver .animate-border-dance,
+  .battery-saver .animate-text-flicker {
+    animation: none !important;
+  }
+  
+  .battery-saver .glow-neon,
+  .battery-saver .glow-strong {
+    box-shadow: none !important;
+  }
+  
+  /* Mobile parallax optimizations */
+  @media (max-width: 768px) {
+    /* Ensure proper stacking and prevent overlaps */
+    .misalign-up {
+      transform: translateY(-5px) !important;
+    }
+    
+    .misalign-down {
+      transform: translateY(5px) !important;
+    }
+    
+    .misalign-left {
+      transform: translateX(-8px) !important;
+    }
+    
+    .misalign-right {
+      transform: translateX(8px) !important;
+    }
+    
+    /* Reduce parallax intensity on mobile */
+    [data-parallax] {
+      transform: translate(0px, 0px) !important;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    }
+    
+    /* Ensure proper z-index stacking */
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Prevent text overlap issues */
+    section {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Optimize transforms for mobile performance */
+    .will-change-transform {
+      will-change: transform;
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+    
+    /* Reduce motion on mobile for better performance */
+    .animate-float,
+    .animate-float-rotate {
+      animation-duration: 8s !important;
+    }
+    
+    .animate-neon-pulse,
+    .animate-scale-pulse {
+      animation-duration: 4s !important;
+    }
+  }
+  
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects on touch devices */
+    .group:hover .opacity-0 {
+      opacity: 0 !important;
+    }
+    
+    /* Ensure proper initial state for touch devices */
+    .group .opacity-0 {
+      opacity: 0.3 !important;
+      transition: opacity 0.3s ease !important;
+    }
+    
+    /* Make interactive elements more touch-friendly */
+    button, .group {
+      touch-action: manipulation;
+    }
+  }
 }
