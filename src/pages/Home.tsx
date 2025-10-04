@@ -338,9 +338,20 @@ const Home = () => {
       {/* Footer */}
       <footer className="py-12 border-t border-dashed border-border">
         <div className="container mx-auto px-4 text-center">
-          <p className="font-mono-heading text-muted-foreground">
+          <p className="font-mono-heading text-muted-foreground mb-4">
             © 2025 HARDWARE HACKFEST <span className="text-neon">2.0</span>
           </p>
+          <div className="border-t border-dashed border-muted-foreground/20 pt-4">
+            <p className="text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors">
+              Website crafted by <span className="text-neon/80 font-mono-heading">Kushagr Ittan</span> •
+              <a
+                href="mailto:kushagrpc@gmail.com"
+                className="hover:text-neon/80 transition-colors ml-1"
+              >
+                kushagrpc@gmail.com
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
     </div>
