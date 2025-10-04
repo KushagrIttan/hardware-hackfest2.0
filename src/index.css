@@ -1,0 +1,317 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 8%;
+    
+    --primary-glow: 180 100% 70%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 180 30% 25%;
+    --input: 180 30% 25%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.25rem;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 180 30% 25%;
+    --sidebar-ring: 180 100% 50%;
+    
+    /* Custom design tokens */
+    --neon-cyan: 180 100% 50%;
+    --neon-glow: 180 100% 70%;
+    --deep-black: 0 0% 8%;
+    --muted-gray: 0 0% 40%;
+    
+    /* Glitch effect colors */
+    --glitch-red: 0 100% 60%;
+    --glitch-blue: 240 100% 60%;
+    
+    /* Shadows and effects */
+    --shadow-neon: 0 0 20px hsl(var(--neon-cyan) / 0.5), 0 0 40px hsl(var(--neon-cyan) / 0.3);
+    --shadow-strong: 0 0 30px hsl(var(--neon-cyan) / 0.7), 0 0 60px hsl(var(--neon-cyan) / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .font-mono-heading {
+    font-family: 'Space Mono', monospace;
+  }
+  
+  .text-neon {
+    color: hsl(var(--neon-cyan));
+  }
+  
+  .border-neon {
+    border-color: hsl(var(--neon-cyan));
+  }
+  
+  .glow-neon {
+    box-shadow: var(--shadow-neon);
+  }
+  
+  .glow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+  
+  .bg-neon {
+    background-color: hsl(var(--neon-cyan));
+  }
+  
+  /* Glitch animation */
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  @keyframes glitch-text {
+    0% {
+      text-shadow: 0.05em 0 0 hsl(var(--glitch-red)), -0.05em -0.025em 0 hsl(var(--glitch-blue));
+    }
+    14% {
+      text-shadow: 0.05em 0 0 hsl(var(--glitch-red)), -0.05em -0.025em 0 hsl(var(--glitch-blue));
+    }
+    15% {
+      text-shadow: -0.05em -0.025em 0 hsl(var(--glitch-red)), 0.05em 0.025em 0 hsl(var(--glitch-blue));
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 hsl(var(--glitch-red)), 0.05em 0.025em 0 hsl(var(--glitch-blue));
+    }
+    50% {
+      text-shadow: 0.025em 0.05em 0 hsl(var(--glitch-red)), 0.05em 0 0 hsl(var(--glitch-blue));
+    }
+    99% {
+      text-shadow: 0.025em 0.05em 0 hsl(var(--glitch-red)), 0.05em 0 0 hsl(var(--glitch-blue));
+    }
+    100% {
+      text-shadow: -0.025em 0 0 hsl(var(--glitch-red)), -0.025em -0.025em 0 hsl(var(--glitch-blue));
+    }
+  }
+  
+  @keyframes neon-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.5), 0 0 40px hsl(var(--neon-cyan) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(var(--neon-cyan) / 0.7), 0 0 60px hsl(var(--neon-cyan) / 0.5);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes float-rotate {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-15px) rotate(2deg);
+    }
+    66% {
+      transform: translateY(-10px) rotate(-2deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+  
+  @keyframes slide-in-bottom {
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes scale-pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  @keyframes border-dance {
+    0%, 100% {
+      border-color: hsl(var(--neon-cyan) / 0.3);
+    }
+    50% {
+      border-color: hsl(var(--neon-cyan));
+    }
+  }
+  
+  @keyframes text-flicker {
+    0%, 100% {
+      opacity: 1;
+    }
+    41%, 43% {
+      opacity: 0.8;
+    }
+    42% {
+      opacity: 0.3;
+    }
+  }
+  
+  .animate-glitch {
+    animation: glitch 0.3s infinite;
+  }
+  
+  .animate-glitch-text {
+    animation: glitch-text 1s infinite;
+  }
+  
+  .animate-neon-pulse {
+    animation: neon-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .animate-float-rotate {
+    animation: float-rotate 6s ease-in-out infinite;
+  }
+  
+  .animate-slide-in-bottom {
+    animation: slide-in-bottom 0.8s ease-out;
+  }
+  
+  .animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out;
+  }
+  
+  .animate-scale-pulse {
+    animation: scale-pulse 3s ease-in-out infinite;
+  }
+  
+  .animate-border-dance {
+    animation: border-dance 2s ease-in-out infinite;
+  }
+  
+  .animate-text-flicker {
+    animation: text-flicker 3s linear infinite;
+  }
+  
+  /* Intentional misalignment utilities */
+  .misalign-up {
+    transform: translateY(-10px);
+  }
+  
+  .misalign-down {
+    transform: translateY(10px);
+  }
+  
+  .misalign-left {
+    transform: translateX(-15px);
+  }
+  
+  .misalign-right {
+    transform: translateX(15px);
+  }
+  
+  .skew-slight {
+    transform: skewY(-1deg);
+  }
+}
