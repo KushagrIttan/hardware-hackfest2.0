@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import LogoHeader from "@/components/LogoHeader";
 import GlitchText from "@/components/GlitchText";
 import NeonButton from "@/components/NeonButton";
 import CursorFollower from "@/components/CursorFollower";
@@ -24,10 +25,11 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <CursorFollower />
+      <LogoHeader />
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden" style={{ isolation: 'isolate' }}>
+      <section className="relative pt-48 pb-20 overflow-hidden" style={{ isolation: 'isolate' }}>
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 opacity-20">
           <LazyImage

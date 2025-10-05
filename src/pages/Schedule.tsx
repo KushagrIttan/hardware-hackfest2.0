@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import LogoHeader from "@/components/LogoHeader";
 import GlitchText from "@/components/GlitchText";
 import CursorFollower from "@/components/CursorFollower";
 import ParallaxContainer from "@/components/ParallaxContainer";
@@ -52,9 +53,10 @@ const Schedule = () => {
   return (
     <div className="min-h-screen bg-background">
       <CursorFollower />
+      <LogoHeader />
       <Navigation />
 
-      <div className="pt-32 pb-20">
+      <div className="pt-48 pb-20">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="max-w-4xl mx-auto mb-16">
