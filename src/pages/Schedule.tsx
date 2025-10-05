@@ -24,11 +24,13 @@ const Schedule = () => {
   ];
 
   const dayTwoEvents = [
-    { time: "13:00", event: "Innovation Sprint Begins", desc: "Selected teams receive Arduino Mini Kits for hands-on creativity" },
-    { time: "13:30", event: "Ideation Phase", desc: "Teams brainstorm solutions for Indian culture/festival challenges" },
-    { time: "14:30", event: "Design & Prototyping", desc: "Build working prototypes using Arduino kits" },
-    { time: "15:45", event: "Pitch Bold Presentations", desc: "Teams present prototypes to jury panel (15:45-16:45)" },
-    { time: "17:00", event: "Results & Closing Ceremony", desc: "Awards announcement and event conclusion (17:00-17:30)" },
+    { time: "10:00", event: "Team Reporting & Kit Distribution", desc: "Selected teams check-in and receive Arduino Mini Kits" },
+    { time: "10:30", event: "Briefing & Theme Reveal", desc: "Event briefing and detailed theme explanation" },
+    { time: "11:00", event: "Prototype Development Phase", desc: "Teams build working prototypes using Arduino kits (11:00 AM - 1:30 PM)" },
+    { time: "13:30", event: "Lunch / Testing Break", desc: "Break for lunch and final prototype testing" },
+    { time: "14:00", event: "Pitch Presentations", desc: "Teams present prototypes to jury panel" },
+    { time: "15:00", event: "Jury Deliberation", desc: "Judges evaluate presentations and select winners" },
+    { time: "15:20", event: "Results & Closing Ceremony", desc: "Awards announcement and event conclusion" },
   ];
 
   const faqs = [
